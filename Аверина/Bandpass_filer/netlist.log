@@ -1,0 +1,40 @@
+; Top Design: "Bandpass_filer_lib:bandpass_filter_ideal:schematic"
+; Netlisted using Hierarchy Policy: "Standard"
+
+Options ResourceUsage=yes UseNutmegFormat=no EnableOptim=yes TopDesignName="Bandpass_filer_lib:bandpass_filter_ideal:schematic" DcopOutputNodeVoltages=yes DcopOutputPinCurrents=yes DcopOutputAllSweepPoints=no DcopOutputDcopType=0
+C:C7  N__7 N__8 C=452.308485 fF 
+C:C6  N__6 0 C=2.457871 pF 
+C:C5  N__10 N__6 C=343.06431 fF 
+C:C4  N__5 0 C=2.558479 pF 
+C:C3  N__9 N__5 C=343.06431 fF 
+C:C2  N__4 0 C=2.457871 pF 
+C:C1  N__0 N__4 C=452.308487 fF 
+L:L7  N__6 N__7 L=28.001128 nH R=1e-12 Ohm Noise=yes  
+L:L6  N__6 0 L=5.152894 nH R=1e-12 Ohm Noise=yes  
+L:L5  N__5 N__10 L=36.917708 nH R=1e-12 Ohm Noise=yes  
+L:L4  N__5 0 L=4.950264 nH R=1e-12 Ohm Noise=yes  
+L:L3  N__4 N__9 L=36.917708 nH noopt{ 10 nH to 20 nH } R=1e-12 Ohm Noise=yes  
+L:L2  N__4 0 L=5.152894 nH R=1e-12 Ohm Noise=yes  
+L:L1  N__11 N__0 L=28.001128 nH R=1e-12 Ohm Noise=yes  
+S_Param:SP1 CalcS=yes CalcY=no CalcZ=no GroupDelayAperture=1e-4 FreqConversion=no FreqConversionPort=1 StatusLevel=2 CalcNoise=no SortNoise=0 BandwidthForNoise=1.0 Hz DevOpPtLevel=0 \
+SweepVar="freq" SweepPlan="SP1_stim" OutputPlan="SP1_Output" 
+
+SweepPlan: SP1_stim Start=100 MHz Stop=1 GHz Step=20 MHz 
+
+OutputPlan:SP1_Output \
+      Type="Output" \
+      UseEquationNestLevel=yes \
+      EquationNestLevel=2 \
+      UseSavedEquationNestLevel=yes \
+      SavedEquationNestLevel=2
+
+#load "python","LinearCollapse"
+Component Module="LinearCollapse" Type="ModelExtractor" NetworkRepresentation=2
+Port:TermG1  N__11 0 Num=1 Z=50 Ohm Noise=yes 
+Port:TermG2  N__8 0 Num=2 Z=50 Ohm Noise=yes 
+
+Optim:"Optim1" OptimType="random" ErrorForm="L2" MaxIters=25 P=2 DesiredError=0.0 StatusLevel=4 FinalAnalysis="None" NormalizeGoals=yes SetBestValues=yes SaveSolns=yes SaveGoals=yes SaveOptimVars=no UpdateDataset=yes SaveNominal=no SaveAllIterations=no UseAllOptVars=yes UseAllGoals=yes SaveCurrentEF=no InitialTempControlMode=0 NumShootsPerIter=20 EnableCockpit=yes NormalizeError=yes SaveAllTrials=no UseAdvTermCriteria=no CostRelativeTol=1.0e-8 LimitOfContSmallImprovement=5 
+
+OptimGoal:OptimGoal1 Expr="" SimInstanceName="SP1" Weight=1.0 \
+SpecLimitLine[1]="OptimGoal1_limit1" 
+SpecLimitLine:"OptimGoal1_limit1" Type="GreaterThan" Min=0.0 Weight=1.0 
