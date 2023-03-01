@@ -1,0 +1,4 @@
+INCLUDE $HPEESOF_DIR/oalibs/analog_rf.defs
+INCLUDE $HPEESOF_DIR/oalibs/dsp.defs
+DEFINE Bandpass_filer_lib Bandpass_filer_lib
+ASSIGN Bandpass_filer_lib libMode shared

@@ -1,0 +1,10 @@
+<!DOCTYPE SaveWorkspaceState>
+<SaveWorkspaceState>
+    <Windows>
+        <Schematic width="1920" geom="1,0,3,39,51,1536,825,1920,1080" height="1009" x1="-1" lib="Bandpass_filer_lib" cell="DA_LCBandpassDT1_bandpass_filter_ideal" view="schematic" y1="-8"/>
+        <Schematic width="1920" geom="1,0,3,59,71,1536,825,1920,1080" height="1009" x1="-1" lib="Bandpass_filer_lib" cell="DA_LCBandpassDT1_bandpass_filter_ideal" view="schematic" y1="-8"/>
+        <Schematic width="1920" geom="1,0,3,79,91,1536,825,1920,1080" height="1009" x1="-1" lib="Bandpass_filer_lib" cell="bandpass_filter_ideal" view="schematic" y1="-8"/>
+        <DDS name="DA_LCBandpassDT.dds"/>
+    </Windows>
+    <MainWindowTab tab="1"/>
+</SaveWorkspaceState>
