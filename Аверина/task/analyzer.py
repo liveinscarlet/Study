@@ -1,0 +1,2 @@
+import PyVISA
+import numpy
