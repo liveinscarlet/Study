@@ -19,14 +19,17 @@
       sps = 16; ZC_count = 127; ZC_root = 126; SNR_dB = 10
       
  2) Построить ФН для сигнала модулированной M-последовательности (скрипт index_UF_Mseq.m):
+
  2.1) Влияние полосы сигнала на ФН:
       sps =  8; Mseq_M = 8; Mseq_type = 1; SNR_dB = 10
       sps = 16; Mseq_M = 7; Mseq_type = 1; SNR_dB = 10
       sps = 32; Mseq_M = 6; Mseq_type = 1; SNR_dB = 10
+
  2.2) Влияние длительности сигнала на ФН:
       sps = 16; Mseq_M = 6; Mseq_type = 1; SNR_dB = -15
       sps = 16; Mseq_M = 7; Mseq_type = 1; SNR_dB = -15
       sps = 16; Mseq_M = 8; Mseq_type = 1; SNR_dB = -15
+
  2.3) Влияние вида сигнала на ФН:
       sps = 16; Mseq_M = 7; Mseq_type = 1; SNR_dB = 10
       sps = 16; Mseq_M = 7; Mseq_type = 2; SNR_dB = 10
