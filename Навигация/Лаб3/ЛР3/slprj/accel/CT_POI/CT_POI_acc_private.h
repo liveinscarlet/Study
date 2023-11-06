@@ -3,6 +3,7 @@
 #include "rtwtypes.h"
 #include "multiword_types.h"
 #include "CT_POI_acc.h"
+#include "CT_POI_acc_types.h"
 #if !defined(ss_VALIDATE_MEMORY)
 #define ss_VALIDATE_MEMORY(S, ptr)     if(!(ptr)) {\
     ssSetErrorStatus(S, RT_MEMORY_ALLOCATION_ERROR);\
