@@ -81,19 +81,18 @@ _ssReportDiagnosticAsInfo ( ( SimStruct * ) S , diag ) ; } static void
 mdlOutputs ( SimStruct * S , int_T tid ) { real_T B_0_9_0 ; B_AKF_CT_T * _rtB
 ; DW_AKF_CT_T * _rtDW ; P_AKF_CT_T * _rtP ; real_T ratio ; real_T taskTimeV ;
 int32_T currentOffset ; int32_T i ; int32_T isHit ; int32_T uyIdx ; uint32_T
-numCycles ; uint8_T tmp ; uint8_T tmp2 ; _rtDW = ( ( DW_AKF_CT_T * )
-ssGetRootDWork ( S ) ) ; _rtP = ( ( P_AKF_CT_T * ) ssGetModelRtp ( S ) ) ;
-_rtB = ( ( B_AKF_CT_T * ) _ssGetModelBlockIO ( S ) ) ; isHit = ssIsSampleHit
-( S , 2 , 0 ) ; if ( isHit != 0 ) { tmp = 0U ; tmp2 = 0U ; for ( i = 0 ; i <
-9 ; i ++ ) { tmp = ( uint8_T ) ( ( uint32_T ) ( uint8_T ) ( ( uint32_T )
-AKF_CT_rtConstP . PNSequenceGenerator2_Polynomial [ i + 1 ] * _rtDW ->
-shiftReg [ i ] ) + tmp ) ; tmp2 = ( uint8_T ) ( ( uint32_T ) ( uint8_T ) ( (
-uint32_T ) _rtDW -> shiftReg [ i ] * AKF_CT_rtConstP .
-PNSequenceGenerator2_Mask [ i ] ) + tmp2 ) ; } tmp &= 1 ; for ( i = 7 ; i >=
-0 ; i -- ) { _rtDW -> shiftReg [ i + 1 ] = _rtDW -> shiftReg [ i ] ; } _rtDW
--> shiftReg [ 0U ] = tmp ; _rtB -> B_0_5_0 = ( ( ( tmp2 & 1U ) != 0U ) * _rtP
--> P_18 + _rtP -> P_19 ) * _rtP -> P_20 ; } isHit = ssIsSampleHit ( S , 5 , 0
-) ; if ( isHit != 0 ) { taskTimeV = ssGetTaskTime ( S , 5 ) ; if (
+numCycles ; uint8_T shiftReg ; uint8_T tmp ; uint8_T tmp2 ; _rtDW = ( (
+DW_AKF_CT_T * ) ssGetRootDWork ( S ) ) ; _rtP = ( ( P_AKF_CT_T * )
+ssGetModelRtp ( S ) ) ; _rtB = ( ( B_AKF_CT_T * ) _ssGetModelBlockIO ( S ) )
+; isHit = ssIsSampleHit ( S , 2 , 0 ) ; if ( isHit != 0 ) { tmp = 0U ; tmp2 =
+0U ; for ( i = 0 ; i < 9 ; i ++ ) { shiftReg = _rtDW -> shiftReg [ i ] ; tmp
++= ( uint8_T ) ( AKF_CT_rtConstP . PNSequenceGenerator2_Polynomial [ i + 1 ]
+* shiftReg ) ; tmp2 += ( uint8_T ) ( shiftReg * AKF_CT_rtConstP .
+PNSequenceGenerator2_Mask [ i ] ) ; } tmp &= 1 ; for ( i = 7 ; i >= 0 ; i --
+) { _rtDW -> shiftReg [ i + 1 ] = _rtDW -> shiftReg [ i ] ; } _rtDW ->
+shiftReg [ 0U ] = tmp ; _rtB -> B_0_5_0 = ( ( ( tmp2 & 1U ) != 0U ) * _rtP ->
+P_18 + _rtP -> P_19 ) * _rtP -> P_20 ; } isHit = ssIsSampleHit ( S , 5 , 0 )
+; if ( isHit != 0 ) { taskTimeV = ssGetTaskTime ( S , 5 ) ; if (
 ssGetTNextWasAdjusted ( S , 5 ) != 0 ) { _rtDW -> nextTime =
 _ssGetVarNextHitTime ( S , 0 ) ; } if ( _rtDW -> justEnabled != 0 ) { _rtDW
 -> justEnabled = 0 ; if ( taskTimeV >= _rtP -> P_3 ) { ratio = ( taskTimeV -
@@ -187,22 +186,19 @@ B_0_13_0 [ currentOffset ] ; i = 1 ; for ( isHit = 1020 ; isHit >= 0 ; isHit
 ; } _rtB -> B_0_14_0 = _rtDW -> Mean1_AccVal / 1022.0 ; } ssCallAccelRunBlock
 ( S , 0 , 15 , SS_CALL_MDL_OUTPUTS ) ; } isHit = ssIsSampleHit ( S , 3 , 0 )
 ; if ( isHit != 0 ) { _rtB -> B_0_16_0 = _rtB -> B_0_12_0 ;
-ssCallAccelRunBlock ( S , 0 , 17 , SS_CALL_MDL_OUTPUTS ) ; { if ( _rtDW ->
-_asyncqueue_inserted_for_ToWorkspace_PWORK . AQHandles && ssGetLogOutput ( S
-) ) { sdiWriteSignal ( _rtDW -> _asyncqueue_inserted_for_ToWorkspace_PWORK .
-AQHandles , ssGetTaskTime ( S , 3 ) , ( char * ) & _rtB -> B_0_16_0 + 0 ) ; }
-} _rtB -> B_0_19_0 = _rtP -> P_16 ; } UNUSED_PARAMETER ( tid ) ; } static
-void mdlOutputsTID7 ( SimStruct * S , int_T tid ) { B_AKF_CT_T * _rtB ;
-P_AKF_CT_T * _rtP ; _rtP = ( ( P_AKF_CT_T * ) ssGetModelRtp ( S ) ) ; _rtB =
-( ( B_AKF_CT_T * ) _ssGetModelBlockIO ( S ) ) ; _rtB -> B_0_0_0 = _rtP ->
-P_17 ; UNUSED_PARAMETER ( tid ) ; }
+ssCallAccelRunBlock ( S , 0 , 17 , SS_CALL_MDL_OUTPUTS ) ; _rtB -> B_0_18_0 =
+_rtP -> P_16 ; } UNUSED_PARAMETER ( tid ) ; } static void mdlOutputsTID7 (
+SimStruct * S , int_T tid ) { B_AKF_CT_T * _rtB ; P_AKF_CT_T * _rtP ; _rtP =
+( ( P_AKF_CT_T * ) ssGetModelRtp ( S ) ) ; _rtB = ( ( B_AKF_CT_T * )
+_ssGetModelBlockIO ( S ) ) ; _rtB -> B_0_0_0 = _rtP -> P_17 ;
+UNUSED_PARAMETER ( tid ) ; }
 #define MDL_UPDATE
 static void mdlUpdate ( SimStruct * S , int_T tid ) { B_AKF_CT_T * _rtB ;
 DW_AKF_CT_T * _rtDW ; P_AKF_CT_T * _rtP ; int32_T isHit ; _rtDW = ( (
 DW_AKF_CT_T * ) ssGetRootDWork ( S ) ) ; _rtP = ( ( P_AKF_CT_T * )
 ssGetModelRtp ( S ) ) ; _rtB = ( ( B_AKF_CT_T * ) _ssGetModelBlockIO ( S ) )
 ; isHit = ssIsSampleHit ( S , 3 , 0 ) ; if ( isHit != 0 ) { _rtDW ->
-Integrator_DSTATE += _rtP -> P_5 * _rtB -> B_0_19_0 ; } { real_T * * uBuffer
+Integrator_DSTATE += _rtP -> P_5 * _rtB -> B_0_18_0 ; } { real_T * * uBuffer
 = ( real_T * * ) & _rtDW -> VariableTimeDelay_PWORK . TUbufferPtrs [ 0 ] ;
 real_T simTime = ssGetT ( S ) ; _rtDW -> VariableTimeDelay_IWORK . Head = ( (
 _rtDW -> VariableTimeDelay_IWORK . Head < ( _rtDW -> VariableTimeDelay_IWORK
@@ -228,28 +224,33 @@ Integrator1_PrevResetState = 2 ; } } UNUSED_PARAMETER ( tid ) ; }
 #define MDL_UPDATE
 static void mdlUpdateTID7 ( SimStruct * S , int_T tid ) { UNUSED_PARAMETER (
 tid ) ; } static void mdlInitializeSizes ( SimStruct * S ) { ssSetChecksumVal
-( S , 0 , 702153458U ) ; ssSetChecksumVal ( S , 1 , 2683608580U ) ;
-ssSetChecksumVal ( S , 2 , 3972076153U ) ; ssSetChecksumVal ( S , 3 ,
-1141922041U ) ; { mxArray * slVerStructMat = ( NULL ) ; mxArray * slStrMat =
+( S , 0 , 3078664261U ) ; ssSetChecksumVal ( S , 1 , 3069512908U ) ;
+ssSetChecksumVal ( S , 2 , 2284804396U ) ; ssSetChecksumVal ( S , 3 ,
+2386914965U ) ; { mxArray * slVerStructMat = ( NULL ) ; mxArray * slStrMat =
 mxCreateString ( "simulink" ) ; char slVerChar [ 10 ] ; int status =
 mexCallMATLAB ( 1 , & slVerStructMat , 1 , & slStrMat , "ver" ) ; if ( status
 == 0 ) { mxArray * slVerMat = mxGetField ( slVerStructMat , 0 , "Version" ) ;
 if ( slVerMat == ( NULL ) ) { status = 1 ; } else { status = mxGetString (
 slVerMat , slVerChar , 10 ) ; } } mxDestroyArray ( slStrMat ) ;
 mxDestroyArray ( slVerStructMat ) ; if ( ( status == 1 ) || ( strcmp (
-slVerChar , "10.5" ) != 0 ) ) { return ; } } ssSetOptions ( S ,
-SS_OPTION_EXCEPTION_FREE_CODE ) ; if ( ssGetSizeofDWork ( S ) != sizeof (
-DW_AKF_CT_T ) ) { ssSetErrorStatus ( S ,
+slVerChar , "10.7" ) != 0 ) ) { return ; } } ssSetOptions ( S ,
+SS_OPTION_EXCEPTION_FREE_CODE ) ; if ( ssGetSizeofDWork ( S ) != ( SLSize )
+sizeof ( DW_AKF_CT_T ) ) { static char msg [ 256 ] ; sprintf ( msg ,
 "Unexpected error: Internal DWork sizes do "
-"not match for accelerator mex file." ) ; } if ( ssGetSizeofGlobalBlockIO ( S
-) != sizeof ( B_AKF_CT_T ) ) { ssSetErrorStatus ( S ,
+"not match for accelerator mex file (%ld vs %lu)." , ( signed long )
+ssGetSizeofDWork ( S ) , ( unsigned long ) sizeof ( DW_AKF_CT_T ) ) ;
+ssSetErrorStatus ( S , msg ) ; } if ( ssGetSizeofGlobalBlockIO ( S ) != (
+SLSize ) sizeof ( B_AKF_CT_T ) ) { static char msg [ 256 ] ; sprintf ( msg ,
 "Unexpected error: Internal BlockIO sizes do "
-"not match for accelerator mex file." ) ; } { int ssSizeofParams ;
-ssGetSizeofParams ( S , & ssSizeofParams ) ; if ( ssSizeofParams != sizeof (
-P_AKF_CT_T ) ) { static char msg [ 256 ] ; sprintf ( msg ,
+"not match for accelerator mex file (%ld vs %lu)." , ( signed long )
+ssGetSizeofGlobalBlockIO ( S ) , ( unsigned long ) sizeof ( B_AKF_CT_T ) ) ;
+ssSetErrorStatus ( S , msg ) ; } { int ssSizeofParams ; ssGetSizeofParams ( S
+, & ssSizeofParams ) ; if ( ssSizeofParams != sizeof ( P_AKF_CT_T ) ) {
+static char msg [ 256 ] ; sprintf ( msg ,
 "Unexpected error: Internal Parameters sizes do "
-"not match for accelerator mex file." ) ; } } _ssSetModelRtp ( S , ( real_T *
-) & AKF_CT_rtDefaultP ) ; } static void mdlInitializeSampleTimes ( SimStruct
-* S ) { slAccRegPrmChangeFcn ( S , mdlOutputsTID7 ) ; } static void
-mdlTerminate ( SimStruct * S ) { }
+"not match for accelerator mex file (%d vs %lu)." , ssSizeofParams , (
+unsigned long ) sizeof ( P_AKF_CT_T ) ) ; ssSetErrorStatus ( S , msg ) ; } }
+_ssSetModelRtp ( S , ( real_T * ) & AKF_CT_rtDefaultP ) ; } static void
+mdlInitializeSampleTimes ( SimStruct * S ) { slAccRegPrmChangeFcn ( S ,
+mdlOutputsTID7 ) ; } static void mdlTerminate ( SimStruct * S ) { }
 #include "simulink.c"

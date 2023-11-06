@@ -1,4 +1,0 @@
-LIBRARY ..\..\..\..\AKF_CT1_acc.mexw64
-EXPORTS
-    mexFunction
-    mexfilerequiredapiversion
