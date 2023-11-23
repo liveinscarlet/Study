@@ -3,7 +3,6 @@
 #include "rtwtypes.h"
 #include "multiword_types.h"
 #include "CT_POI_acc.h"
-#include "CT_POI_acc_types.h"
 #if !defined(ss_VALIDATE_MEMORY)
 #define ss_VALIDATE_MEMORY(S, ptr)     if(!(ptr)) {\
     ssSetErrorStatus(S, RT_MEMORY_ALLOCATION_ERROR);\
@@ -40,13 +39,17 @@
 #ifndef __RTW_UTFREE__
 extern void * utMalloc ( size_t ) ; extern void utFree ( void * ) ;
 #endif
-boolean_T CT_POI_acc_rt_TDelayUpdateTailOrGrowBuf ( int_T * bufSzPtr , int_T
-* tailPtr , int_T * headPtr , int_T * lastPtr , real_T tMinusDelay , real_T *
-* uBufPtr , boolean_T isfixedbuf , boolean_T istransportdelay , int_T *
-maxNewBufSzPtr ) ; real_T CT_POI_acc_rt_TDelayInterpolate ( real_T
-tMinusDelay , real_T tStart , real_T * uBuf , int_T bufSz , int_T * lastIdx ,
-int_T oldestIdx , int_T newIdx , real_T initOutput , boolean_T discrete ,
-boolean_T minorStepAndTAtLastMajorOutput ) ; real_T
+extern void RandSrcInitState_GZ ( const uint32_T seed [ ] , uint32_T state [
+] , int32_T nChans ) ; extern void RandSrc_GZ_D ( real_T y [ ] , const real_T
+mean [ ] , int32_T meanLen , const real_T xstd [ ] , int32_T xstdLen ,
+uint32_T state [ ] , int32_T nChans , int32_T nSamps ) ; boolean_T
+CT_POI_acc_rt_TDelayUpdateTailOrGrowBuf ( int_T * bufSzPtr , int_T * tailPtr
+, int_T * headPtr , int_T * lastPtr , real_T tMinusDelay , real_T * * uBufPtr
+, boolean_T isfixedbuf , boolean_T istransportdelay , int_T * maxNewBufSzPtr
+) ; real_T CT_POI_acc_rt_TDelayInterpolate ( real_T tMinusDelay , real_T
+tStart , real_T * uBuf , int_T bufSz , int_T * lastIdx , int_T oldestIdx ,
+int_T newIdx , real_T initOutput , boolean_T discrete , boolean_T
+minorStepAndTAtLastMajorOutput ) ; real_T
 CT_POI_acc_rt_VTDelayfindtDInterpolate ( real_T x , real_T * uBuf , int_T
 bufSz , int_T head , int_T tail , int_T * pLast , real_T t , real_T tStart ,
 boolean_T discrete , boolean_T minorStepAndTAtLastMajorOutput , real_T
