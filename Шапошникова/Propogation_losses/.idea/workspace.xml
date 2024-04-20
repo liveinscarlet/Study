@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4f9e1731-aa3f-4d8e-8b59-c47b2bc75f0a" name="Changes" comment="" />
+    <list default="true" id="4f9e1731-aa3f-4d8e-8b59-c47b2bc75f0a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../НИР зима 2024/~$кст НИР.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../НИР зима 2024/Текст НИР.docx" beforeDir="false" afterPath="$PROJECT_DIR$/../../НИР зима 2024/Текст НИР.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../НИР лето 2023/~$Р_Величкина.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -27,14 +32,14 @@
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/pulses_comp"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/pulses_comp&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -51,6 +56,9 @@
       <workItem from="1705086991005" duration="25000" />
       <workItem from="1705087154875" duration="904000" />
       <workItem from="1706368821478" duration="609000" />
+      <workItem from="1707494922364" duration="408000" />
+      <workItem from="1707505768017" duration="5000" />
+      <workItem from="1711966110222" duration="378000" />
     </task>
     <servers />
   </component>
